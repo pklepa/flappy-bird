@@ -3,6 +3,8 @@ import Phaser from 'phaser';
 import { MainScene } from './GameScene';
 import { IonPhaser } from '@ion-phaser/react';
 
+import { INCREASE_SCORE } from '../store/Events';
+
 class GameView extends React.Component {
   state = {
     initialize: true,
@@ -32,8 +34,17 @@ class GameView extends React.Component {
 
   render() {
     const { initialize, game } = this.state;
+
     return <IonPhaser game={game} initialize={initialize} />;
   }
 }
 
 export default GameView;
+
+// Custom event that change value in Mobx store
+// function addListeners(game) {
+//   game.events.on(INCREASE_SCORE, (amount) => {
+//     // props.gameStore.increaseScore(amount);
+//     console.log('hello fron listener');
+//   });
+// }
