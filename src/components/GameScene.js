@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import { GameEvents, Actions } from '../store/Events';
-import { GameStore } from '../store/GameStore';
 
 const gameOptions = {
   // bird gravity, will make bird fall if you don't flap
