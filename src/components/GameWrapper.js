@@ -7,6 +7,8 @@ const useStyles = makeStyles({
     width: '320px',
     height: '480px',
     margin: '30px',
+
+    position: 'relative',
   },
 });
 

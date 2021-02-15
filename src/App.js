@@ -1,10 +1,14 @@
 import React from 'react';
 import { CssBaseline, makeStyles } from '@material-ui/core';
+import { observer } from 'mobx-react';
+
+import { GameStore } from './store/GameStore';
+
+import ScoreBoard from './components/ScoreBoard';
 import GameWrapper from './components/GameWrapper';
 import GameView from './components/GameView';
-import ScoreBoard from './components/ScoreBoard';
-import { GameStore } from './store/GameStore';
 import Header from './components/Header';
+import Tooltip from './components/Tooltip';
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-function App() {
+const App = observer(() => {
   const classes = useStyles();
 
   return (
@@ -35,10 +39,12 @@ function App() {
 
         <GameWrapper>
           <GameView />
+
+          {!GameStore.isCurrentlyPlaying && <Tooltip />}
         </GameWrapper>
       </div>
     </>
   );
-}
+});
 
 export default App;
