@@ -43,9 +43,6 @@ export class MainScene extends Phaser.Scene {
     //  Add event listeners for every event described in GameEvents, the 'handler' function. The 'this' argument is the context.
     GameEvents.map((event) => this.events.on(event.key, event.handler, this));
 
-    // Reset score at the beginning
-    this.events.emit(Actions.RESET_SCORE);
-
     // add the background
     var bg = this.add.sprite(0, 0, 'background');
     bg.setOrigin(0, 0);

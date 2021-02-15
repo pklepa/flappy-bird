@@ -9,6 +9,7 @@ import GameWrapper from './components/GameWrapper';
 import GameView from './components/GameView';
 import Header from './components/Header';
 import Tooltip from './components/Tooltip';
+import Overlay from './components/Overlay';
 
 const useStyles = makeStyles({
   root: {
@@ -40,6 +41,7 @@ const App = observer(() => {
         <GameWrapper>
           <GameView />
 
+          {GameStore.showOverlay && <Overlay store={GameStore} />}
           {!GameStore.isCurrentlyPlaying && <Tooltip />}
         </GameWrapper>
       </div>

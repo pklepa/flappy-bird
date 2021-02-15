@@ -5,15 +5,18 @@ class GameStoreImplem {
     makeObservable(this, {
       currentScore: observable,
       isCurrentlyPlaying: observable,
+      showOverlay: observable,
       increaseScore: action,
       resetScore: action,
       startGame: action,
       endGame: action,
+      hideOverlay: action,
     });
   }
 
   currentScore = 0;
   isCurrentlyPlaying = false;
+  showOverlay = true;
 
   increaseScore = () => {
     this.currentScore += 1;
@@ -29,6 +32,11 @@ class GameStoreImplem {
 
   endGame = () => {
     this.isCurrentlyPlaying = false;
+    this.showOverlay = true;
+  };
+
+  hideOverlay = () => {
+    this.showOverlay = false;
   };
 }
 
