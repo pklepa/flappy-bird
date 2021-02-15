@@ -1,6 +1,7 @@
 import React from 'react';
 import { CssBaseline, makeStyles } from '@material-ui/core';
 import GameWrapper from './components/GameWrapper';
+import GameView from './components/GameView';
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +28,9 @@ function App() {
       <div className={classes.root}>
         <h1>hello world</h1>
 
-        <GameWrapper></GameWrapper>
+        <GameWrapper>
+          <GameView />
+        </GameWrapper>
       </div>
     </>
   );
