@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { GameEvents, INCREASE_SCORE } from '../store/Events';
 
 const gameOptions = {
   // bird gravity, will make bird fall if you don't flap
@@ -28,7 +29,7 @@ const gameOptions = {
 };
 
 export class MainScene extends Phaser.Scene {
-  constructor() {
+  constructor(props) {
     super('PlayGame');
   }
 
@@ -39,9 +40,15 @@ export class MainScene extends Phaser.Scene {
   }
 
   create() {
+    //  Here is our event listener, the 'handler' function. The 'this' argument is the context.
+    this.events.on('increaseScore', () => console.log('increased!'), this);
+    GameEvents.map((event) => this.events.on(event.key, event.handler, this));
+
     // add the background
     var bg = this.add.sprite(0, 0, 'background');
     bg.setOrigin(0, 0);
+
+    // this.events.emit('increaseScore');
 
     // Place initial set of pipes and give them movement
     this.pipeGroup = this.physics.add.group();
@@ -96,8 +103,13 @@ export class MainScene extends Phaser.Scene {
     this.pipePool[1].y = pipeHolePosition + pipeHoleHeight / 2;
     this.pipePool[1].setOrigin(0, 0);
     this.pipePool = [];
+
     if (addScore) {
       this.updateScore(1);
+
+      //  We'll use the Scenes own EventEmitter to dispatch our event
+      this.events.emit('increaseScore');
+      this.events.emit(INCREASE_SCORE);
     }
   }
 
@@ -142,5 +154,8 @@ export class MainScene extends Phaser.Scene {
       Math.max(this.score, this.topScore)
     );
     this.scene.restart('PlayGame');
+
+    this.events.removeListener('increaseScore');
+    GameEvents.map((event) => this.events.removeListener(event.key));
   }
 }
