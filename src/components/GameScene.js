@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { GameEvents, INCREASE_SCORE } from '../store/Events';
+import { GameEvents, Actions } from '../store/Events';
 
 const gameOptions = {
   // bird gravity, will make bird fall if you don't flap
@@ -40,15 +40,15 @@ export class MainScene extends Phaser.Scene {
   }
 
   create() {
-    //  Here is our event listener, the 'handler' function. The 'this' argument is the context.
-    this.events.on('increaseScore', () => console.log('increased!'), this);
+    //  Add event listeners for every event described in GameEvents, the 'handler' function. The 'this' argument is the context.
     GameEvents.map((event) => this.events.on(event.key, event.handler, this));
+
+    // Reset score at the beginning
+    this.events.emit(Actions.RESET_SCORE);
 
     // add the background
     var bg = this.add.sprite(0, 0, 'background');
     bg.setOrigin(0, 0);
-
-    // this.events.emit('increaseScore');
 
     // Place initial set of pipes and give them movement
     this.pipeGroup = this.physics.add.group();
@@ -108,8 +108,7 @@ export class MainScene extends Phaser.Scene {
       this.updateScore(1);
 
       //  We'll use the Scenes own EventEmitter to dispatch our event
-      this.events.emit('increaseScore');
-      this.events.emit(INCREASE_SCORE);
+      this.events.emit(Actions.INCREASE_SCORE);
     }
   }
 
@@ -126,6 +125,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   update() {
+    // Add collision to pipes
     this.physics.world.collide(
       this.bird,
       this.pipeGroup,
@@ -135,9 +135,13 @@ export class MainScene extends Phaser.Scene {
       null,
       this
     );
+
+    // Kills bird if out of bounds
     if (this.bird.y > gameOptions.gameHeight || this.bird.y < 0) {
       this.die();
     }
+
+    // If pipes are out of bounds (left of the screen), create new ones (on the right)
     this.pipeGroup.getChildren().forEach(function (pipe) {
       if (pipe.getBounds().right < 0) {
         this.pipePool.push(pipe);
@@ -155,7 +159,7 @@ export class MainScene extends Phaser.Scene {
     );
     this.scene.restart('PlayGame');
 
-    this.events.removeListener('increaseScore');
+    // Remove every active event listener
     GameEvents.map((event) => this.events.removeListener(event.key));
   }
 }

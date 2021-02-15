@@ -5,6 +5,7 @@ class GameStoreImplem {
     makeObservable(this, {
       currentScore: observable,
       increaseScore: action,
+      resetScore: action,
     });
   }
 
@@ -12,6 +13,10 @@ class GameStoreImplem {
 
   increaseScore = () => {
     this.currentScore += 1;
+  };
+
+  resetScore = () => {
+    this.currentScore = 0;
   };
 }
 

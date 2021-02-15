@@ -3,7 +3,6 @@ import Phaser from 'phaser';
 import { MainScene } from './GameScene';
 import { IonPhaser } from '@ion-phaser/react';
 import { observer } from 'mobx-react';
-import { INCREASE_SCORE } from '../store/Events';
 
 const GameView = observer(function GameView() {
   const [initialize] = useState(true);
