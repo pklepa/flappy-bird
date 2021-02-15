@@ -4,6 +4,7 @@ import GameWrapper from './components/GameWrapper';
 import GameView from './components/GameView';
 import ScoreBoard from './components/ScoreBoard';
 import { GameStore } from './store/GameStore';
+import Header from './components/Header';
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +29,7 @@ function App() {
       <CssBaseline />
 
       <div className={classes.root}>
-        <h1>hello world</h1>
+        <Header />
 
         <ScoreBoard store={GameStore} />
 
