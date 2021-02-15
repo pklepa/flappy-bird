@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { GameEvents, Actions } from '../store/Events';
+import { GameStore } from '../store/GameStore';
 
 const gameOptions = {
   // bird gravity, will make bird fall if you don't flap
@@ -50,7 +51,7 @@ export class MainScene extends Phaser.Scene {
     var bg = this.add.sprite(0, 0, 'background');
     bg.setOrigin(0, 0);
 
-    // Place initial set of pipes and give them movement
+    // Place initial set of pipes
     this.pipeGroup = this.physics.add.group();
     this.pipePool = [];
     for (let i = 0; i < 4; i++) {
@@ -58,12 +59,22 @@ export class MainScene extends Phaser.Scene {
       this.pipePool.push(this.pipeGroup.create(0, 0, 'pipe'));
       this.placePipes(false);
     }
-    this.pipeGroup.setVelocityX(-gameOptions.birdSpeed);
 
     // Position bird in the screen
     this.bird = this.physics.add.sprite(80, gameOptions.gameHeight / 2, 'bird');
-    this.bird.body.gravity.y = gameOptions.birdGravity;
-    this.input.on('pointerdown', this.flap, this);
+
+    // Starts the game only after the first click
+    this.input.once(
+      'pointerdown',
+      () => {
+        this.pipeGroup.setVelocityX(-gameOptions.birdSpeed);
+        this.bird.body.gravity.y = gameOptions.birdGravity;
+        this.input.on('pointerdown', this.flap, this);
+
+        this.events.emit(Actions.GAME_START);
+      },
+      this
+    );
 
     // In-game scoreboard
     this.score = 0;
@@ -125,6 +136,8 @@ export class MainScene extends Phaser.Scene {
   }
 
   update() {
+    // If game is paused, do nothing here
+
     // Add collision to pipes
     this.physics.world.collide(
       this.bird,
@@ -158,6 +171,9 @@ export class MainScene extends Phaser.Scene {
       Math.max(this.score, this.topScore)
     );
     this.scene.restart('PlayGame');
+
+    // Stop the game when dead
+    this.events.emit(Actions.GAME_END);
 
     // Remove every active event listener
     GameEvents.map((event) => this.events.removeListener(event.key));

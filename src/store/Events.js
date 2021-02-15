@@ -24,4 +24,18 @@ export const GameEvents = [
       GameStore.resetScore();
     },
   },
+  {
+    key: Actions.GAME_START,
+    handler: () => {
+      console.log(Actions.GAME_START);
+      GameStore.startGame();
+    },
+  },
+  {
+    key: Actions.GAME_END,
+    handler: () => {
+      console.log(Actions.GAME_END);
+      GameStore.endGame();
+    },
+  },
 ];
