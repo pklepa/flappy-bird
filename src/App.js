@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 
 import { GameStore } from './store/GameStore';
 
-import ScoreBoard from './components/ScoreBoard';
 import GameWrapper from './components/GameWrapper';
 import GameView from './components/GameView';
 import Header from './components/Header';
@@ -35,8 +34,6 @@ const App = observer(() => {
 
       <div className={classes.root}>
         <Header />
-
-        <ScoreBoard store={GameStore} />
 
         <GameWrapper>
           <GameView />
