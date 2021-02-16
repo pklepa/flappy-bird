@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.js": "/flappy-bird/static/js/main.68fa79a2.chunk.js",
+    "main.js.map": "/flappy-bird/static/js/main.68fa79a2.chunk.js.map",
+    "polyfills-css-shim.js": "/flappy-bird/static/js/polyfills-css-shim.6264408d.chunk.js",
+    "polyfills-css-shim.js.map": "/flappy-bird/static/js/polyfills-css-shim.6264408d.chunk.js.map",
+    "runtime-main.js": "/flappy-bird/static/js/runtime-main.b52f15a4.js",
+    "runtime-main.js.map": "/flappy-bird/static/js/runtime-main.b52f15a4.js.map",
+    "static/js/3.9492ca53.chunk.js": "/flappy-bird/static/js/3.9492ca53.chunk.js",
+    "static/js/3.9492ca53.chunk.js.map": "/flappy-bird/static/js/3.9492ca53.chunk.js.map",
+    "static/js/4.43002741.chunk.js": "/flappy-bird/static/js/4.43002741.chunk.js",
+    "static/js/4.43002741.chunk.js.map": "/flappy-bird/static/js/4.43002741.chunk.js.map",
+    "static/js/5.def29784.chunk.js": "/flappy-bird/static/js/5.def29784.chunk.js",
+    "static/js/5.def29784.chunk.js.map": "/flappy-bird/static/js/5.def29784.chunk.js.map",
+    "static/js/6.9ec94d9c.chunk.js": "/flappy-bird/static/js/6.9ec94d9c.chunk.js",
+    "static/js/6.9ec94d9c.chunk.js.map": "/flappy-bird/static/js/6.9ec94d9c.chunk.js.map",
+    "index.html": "/flappy-bird/index.html",
+    "static/js/3.9492ca53.chunk.js.LICENSE.txt": "/flappy-bird/static/js/3.9492ca53.chunk.js.LICENSE.txt",
+    "static/js/4.43002741.chunk.js.LICENSE.txt": "/flappy-bird/static/js/4.43002741.chunk.js.LICENSE.txt",
+    "static/js/5.def29784.chunk.js.LICENSE.txt": "/flappy-bird/static/js/5.def29784.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b52f15a4.js",
+    "static/js/3.9492ca53.chunk.js",
+    "static/js/main.68fa79a2.chunk.js"
+  ]
+}
