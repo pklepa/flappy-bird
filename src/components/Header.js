@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     fontWeight: 400,
-    fontSize: '24px',
+    fontSize: '26px',
     fontFamily: "'Josefin Sans', sans-serif",
     letterSpacing: '1px',
   },
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   logo: {
     width: '150px',
     height: '50px',
-    margin: '0 15px',
+    margin: '0 10px',
   },
 });
 
@@ -29,7 +29,7 @@ function Header() {
   return (
     <AppBar className={classes.appbar} position="absolute">
       <h1 className={classes.title}>
-        My application for
+        Flappy
         <img
           className={classes.logo}
           src={process.env.PUBLIC_URL + '/images/adeptly.png'}
